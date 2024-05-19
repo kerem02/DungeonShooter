@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
     public Camera cam;
+    public SpriteRenderer charspriteRenderer;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        charspriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -39,20 +41,18 @@ public class PlayerMovement : MonoBehaviour
 
         handleMovement();
 
-        Vector2 lookDir = mousePos - rb.position;
-        if (lookDir.x > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (lookDir.x < 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
+        UpdateDirection();
 
     }
 
     void handleMovement()
     {
         rb.velocity = movement.normalized * moveSpeed;
+    }
+
+    void UpdateDirection()
+    {
+        Vector2 lookDir = mousePos - rb.position;
+        charspriteRenderer.flipX = lookDir.x > 0;
     }
 }
