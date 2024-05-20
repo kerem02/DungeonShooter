@@ -8,8 +8,8 @@ public class gun_Aim : MonoBehaviour
     public Camera cam;
     public SpriteRenderer gunSpriteRenderer;
 
-    public int defaultSortingOrder = 9;
-    public int flippedSortingOrder = 11;
+    private int defaultSortingOrder = 9;
+    private int flippedSortingOrder = 11;
 
     private void Awake()
     {
