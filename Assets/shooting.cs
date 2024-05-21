@@ -8,9 +8,9 @@ public class shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public AudioSource audioSource;
 
-    private float bulletForce = 30f;
     private float fireRate = 0.5f;
     private float nextFireTime = 0f;
+ 
 
 
     void Awake()
@@ -32,8 +32,6 @@ public class shooting : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(-1 * firepoint.right * bulletForce, ForceMode2D.Impulse);
         audioSource.Play();
     }
 }

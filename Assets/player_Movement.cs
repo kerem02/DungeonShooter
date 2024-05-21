@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDamageble
 {
     public float moveSpeed = 5f;
 
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 mousePos;
 
     Animator animator;
+
+    [field: SerializeField]public float health { get; set; }
 
     private void Awake()
     {
@@ -88,5 +91,18 @@ public class PlayerMovement : MonoBehaviour
         }
         tr.emitting = false;
         isDashing = false;
+    }
+
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("MeleeEnemy"))
+        {
+            takeDamage(25);
+        }
     }
 }
