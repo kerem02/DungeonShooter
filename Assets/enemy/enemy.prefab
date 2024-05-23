@@ -192,7 +192,8 @@ GameObject:
   - component: {fileID: 3872212254738516640}
   - component: {fileID: 4729609503245272600}
   - component: {fileID: 5459497329053550918}
-  m_Layer: 0
+  - component: {fileID: 7046547334044284118}
+  m_Layer: 6
   m_Name: enemy
   m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
@@ -255,7 +256,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2088707244, guid: 51faa8754e6fe334bb11d8f831e67b2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -310,7 +311,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   healthBar: {fileID: 2137487079973069838}
   cenemyspriteRenderer: {fileID: 0}
-  <health>k__BackingField: 0
+  <health>k__BackingField: 50
+  <isKnocking>k__BackingField: 0
+  <knockbackDuration>k__BackingField: 0.3
+  <flashEffect>k__BackingField: {fileID: 7046547334044284118}
 --- !u!70 &4729609503245272600
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -367,6 +371,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7046547334044284118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804657503825273221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca521c9cdad2f443be2dde9884a84b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 8a1d89734de69ff44b3e0d1c2812c92d, type: 2}
+  duration: 0.1
 --- !u!1 &7036692860591830232
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0c45e0c645bb43f49bb723319c9c1ce3, type: 3}
+  m_Sprite: {fileID: -1398206719, guid: 0c45e0c645bb43f49bb723319c9c1ce3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

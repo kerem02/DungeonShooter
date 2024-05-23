@@ -12,6 +12,10 @@ public class bullet : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public GameObject hitEffect;
+
+    [SerializeField] private float knockbackForce = 1f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,9 +33,13 @@ public class bullet : MonoBehaviour
     {
         if (collision.TryGetComponent(out IDamageble damageble))
         {
-            damageble.takeDamage(20);
-            Destroy(gameObject);
+            Instantiate(hitEffect, transform.position, transform.rotation);
+
+            Vector2 direction = (collision.transform.position - transform.position).normalized;
+            damageble.takeDamage(20,direction, knockbackForce);
+
         }
+           Destroy(gameObject);
     }
 
 }

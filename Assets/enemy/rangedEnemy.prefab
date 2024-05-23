@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4157779179071549525}
   - component: {fileID: 1300852579311984924}
   - component: {fileID: 5974270647904728929}
-  m_Layer: 0
+  - component: {fileID: 2333351632151105575}
+  m_Layer: 6
   m_Name: rangedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +137,9 @@ MonoBehaviour:
   renemyspriteRenderer: {fileID: 0}
   healthBar: {fileID: 2864242987679722231}
   <health>k__BackingField: 100
+  <isKnocking>k__BackingField: 0
+  <knockbackDuration>k__BackingField: 0.1
+  <flashEffect>k__BackingField: {fileID: 2333351632151105575}
 --- !u!70 &1300852579311984924
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -192,6 +196,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2333351632151105575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703664219856959050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca521c9cdad2f443be2dde9884a84b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 8a1d89734de69ff44b3e0d1c2812c92d, type: 2}
+  duration: 0.1
 --- !u!1 &2380326312354008024
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +489,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   gunSpriteRenderer: {fileID: 0}
   target: {fileID: 0}
-  followSpeed: 1
 --- !u!1 &4836236506066940599
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0c45e0c645bb43f49bb723319c9c1ce3, type: 3}
+  m_Sprite: {fileID: -1398206719, guid: 0c45e0c645bb43f49bb723319c9c1ce3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

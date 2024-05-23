@@ -1,3 +1,4 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,25 +9,28 @@ using UnityEngine;
 public class rangedEnemy : MonoBehaviour, IDamageble
 {
     public Transform target;
-    private float speed =4.5f;
     public Rigidbody2D rb;
     public GameObject bulletPrefab;
-    private float triggerDistance = 10f;
-
-
-    private float distanceToShoot = 10f;
-    private float distanceToStop = 8f;
-
-    private float fireRate = 1.2f;
-    private float timeToFire = 0;
-    private bool isTriggered = false;
     public Transform firingPoint;
     public SpriteRenderer renemyspriteRenderer;
     public HealthBar healthBar;
 
+    private float speed =4.5f;
+    private float triggerDistance = 10f;
+    private float distanceToShoot = 10f;
+    private float distanceToStop = 9f;
+    private float fireRate = 1.2f;
+    private float timeToFire = 0;
+    private float smoothingSpeed = 8f;
+
+    private bool isTriggered = false;
+
     Animator animator;
 
     [field: SerializeField] public float health { get; set; }
+    [field: SerializeField] public bool isKnocking { get; set; }
+    [field: SerializeField] public float knockbackDuration { get; set; }
+    [field: SerializeField] public SimpleFlash flashEffect { get; set; }
 
 
     // Start is called before the first frame update
@@ -69,7 +73,7 @@ public class rangedEnemy : MonoBehaviour, IDamageble
 
     private void FixedUpdate(){
 
-        if (rb.velocity == new Vector2(0, 0))
+        if (rb.velocity.magnitude <= 0.5f)
         {
             animator.SetBool("isWalking", false);
         }
@@ -80,10 +84,10 @@ public class rangedEnemy : MonoBehaviour, IDamageble
             if(Vector2.Distance(target.position, transform.position) <= triggerDistance){
             isTriggered =true;
             }
-            if(Vector2.Distance(target.position, transform.position) >= distanceToStop && isTriggered){
+            if(Vector2.Distance(target.position, transform.position) >= distanceToStop && isTriggered && !isKnocking){
                 rb.velocity = (target.position - transform.position).normalized * speed;
             }else{
-                rb.velocity = Vector2.zero;
+                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, smoothingSpeed * Time.deltaTime);
             }
         }
 
@@ -102,11 +106,24 @@ public class rangedEnemy : MonoBehaviour, IDamageble
         }
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(float damage, Vector2 direction, float knockbackForce)
     {
         health -= damage;
         healthBar.setHealth(health);
+        flashEffect.Flash();
+        StartCoroutine(Knockback(direction, knockbackForce));
     }
 
-   
+    public IEnumerator Knockback(Vector2 direction, float knockbackForce)
+    {
+        Vector2 force = direction * knockbackForce;
+        isKnocking = true;
+
+        rb.AddForce(force, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnocking = false;
+    }
+
+
 }

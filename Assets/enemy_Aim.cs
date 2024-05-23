@@ -9,7 +9,7 @@ public class enemy_Aim : MonoBehaviour
     public SpriteRenderer gunSpriteRenderer;
     public Transform target;
 
-    public float followSpeed = 1f;
+    private float followSpeed = 8f;
 
     private int defaultSortingOrder = 9;
     private int flippedSortingOrder = 11;

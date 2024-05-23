@@ -1,3 +1,4 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ public class enemy : MonoBehaviour, IDamageble
     Animator animator;
 
     [field: SerializeField] public float health { get; set; }
+    [field: SerializeField] public bool isKnocking { get; set; }
+    [field: SerializeField] public float knockbackDuration { get; set; }
+    [field: SerializeField] public SimpleFlash flashEffect { get; set; }
 
     // Start is called before the first frame update
     private void Start()
@@ -60,7 +64,7 @@ public class enemy : MonoBehaviour, IDamageble
             if(Vector2.Distance(target.position, transform.position) <= triggerDistance){
                 isTriggered =true;
             }
-            if(isTriggered){
+            if(isTriggered && !isKnocking){
                 rb.velocity = (target.position - transform.position).normalized *speed;
             }
         }
@@ -80,9 +84,21 @@ public class enemy : MonoBehaviour, IDamageble
     
 
 
-    public void takeDamage(float damage)
+    public void takeDamage(float damage, Vector2 direction, float knockbackForce)
     {   
         health -= damage;
         healthBar.setHealth(health);
+        flashEffect.Flash();
+        StartCoroutine(Knockback(direction, knockbackForce));
+    }
+
+    public IEnumerator Knockback(Vector2 direction, float knockbackForce)
+    {
+        Vector2 force = direction * knockbackForce;
+        isKnocking = true;
+        rb.AddForce(force, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnocking = false;
     }
 }
