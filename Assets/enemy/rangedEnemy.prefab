@@ -136,6 +136,7 @@ MonoBehaviour:
   firingPoint: {fileID: 340523494693327114}
   renemyspriteRenderer: {fileID: 0}
   healthBar: {fileID: 2864242987679722231}
+  goldPrefab: {fileID: 5278048540882146363, guid: 63da713a25ce26540a64271c5b27366a, type: 3}
   <health>k__BackingField: 100
   <isKnocking>k__BackingField: 0
   <knockbackDuration>k__BackingField: 0.1

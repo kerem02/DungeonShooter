@@ -14,11 +14,12 @@ public class rangedEnemy : MonoBehaviour, IDamageble
     public Transform firingPoint;
     public SpriteRenderer renemyspriteRenderer;
     public HealthBar healthBar;
+    public GameObject goldPrefab;
 
     private float speed =4.5f;
-    private float triggerDistance = 10f;
-    private float distanceToShoot = 10f;
-    private float distanceToStop = 9f;
+    private float triggerDistance = 12f;
+    private float distanceToShoot = 8f;
+    private float distanceToStop = 7f;
     private float fireRate = 1.2f;
     private float timeToFire = 0;
     private float smoothingSpeed = 8f;
@@ -59,7 +60,7 @@ public class rangedEnemy : MonoBehaviour, IDamageble
 
         if( health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
     private void shoot(){
@@ -123,6 +124,17 @@ public class rangedEnemy : MonoBehaviour, IDamageble
         yield return new WaitForSeconds(knockbackDuration);
 
         isKnocking = false;
+    }
+
+    private void DropGold()
+    {
+        Instantiate(goldPrefab, transform.position, Quaternion.identity);
+    }
+
+    private void Die()
+    {
+        DropGold();
+        Destroy(gameObject);
     }
 
 

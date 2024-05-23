@@ -1,7 +1,10 @@
 using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class player : MonoBehaviour, IDamageble
@@ -18,14 +21,19 @@ public class player : MonoBehaviour, IDamageble
     private float nextDashTime = 0f;
     private float dashCooldown = 1f;
     private float meleeknockbackForce = 10f;
- 
+
+    public int gold = 0;
+    public int healthPotionCount = 0;
+    private int healAmount = 25;
+
+    public TextMeshProUGUI potionCountText;
+    public TextMeshProUGUI goldCountText;
 
     private bool isDashing = false;
 
     public HealthBar healthBar;
-
     public GameObject hitEffect;
-
+    public GameObject deadScreen;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -42,6 +50,9 @@ public class player : MonoBehaviour, IDamageble
         animator = GetComponent<Animator>();
         charspriteRenderer = GetComponent<SpriteRenderer>();
         healthBar.setMaxHealth(health);
+        deadScreen.SetActive(false);
+        UpdatePotionUI();
+        UpdateGoldUI();
     }
 
     // Update is called once per frame
@@ -56,6 +67,16 @@ public class player : MonoBehaviour, IDamageble
         movement.y = Input.GetAxisRaw("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetKeyDown(KeyCode.E) && health < 100 && healthPotionCount > 0)
+        {
+            Heal(healAmount);
+        }
+
+        if(health <= 0)
+        {
+            Die();
+        }
     }
 
     void FixedUpdate()
@@ -130,5 +151,63 @@ public class player : MonoBehaviour, IDamageble
         yield return new WaitForSeconds(knockbackDuration);
    
         isKnocking = false;
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        UpdateGoldUI();
+        Debug.Log("Gold : " + gold);
+    }
+
+    public void AddPotion(int count)
+    {
+        healthPotionCount += count;
+        UpdatePotionUI();
+    }
+
+    private void UpdatePotionUI()
+    {
+        potionCountText.text = "x" + healthPotionCount;
+    }
+
+    public void Heal(int amount)
+    {
+        health += amount;
+        if(health >= 100)
+        {
+            health = 100;
+        }
+        healthPotionCount--;
+        UpdatePotionUI();
+        healthBar.setHealth(health);
+
+    }
+
+    public void UpdateGoldUI()
+    {
+        goldCountText.text = "x" + gold;
+    }
+
+    public void ShowDeadPanel()
+    {
+        deadScreen.SetActive(true);
+    }
+
+    private void Die()
+    {
+        Debug.Log("You are dead");
+        ShowDeadPanel();
+        gameObject.SetActive(false);
+    }
+
+    public void TryAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

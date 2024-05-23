@@ -8,12 +8,16 @@ using UnityEngine;
 public class enemy : MonoBehaviour, IDamageble
 {
     public Transform target;
-    private float speed =3f;
     public Rigidbody2D rb;
+
+    private float speed =3f;
     private float triggerDistance =10f;
+
     private bool isTriggered = false;
+
     public HealthBar healthBar;
     public SpriteRenderer cenemyspriteRenderer;
+    public GameObject goldPrefab;
 
     Animator animator;
 
@@ -45,7 +49,7 @@ public class enemy : MonoBehaviour, IDamageble
 
         if(health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -100,5 +104,16 @@ public class enemy : MonoBehaviour, IDamageble
         yield return new WaitForSeconds(knockbackDuration);
 
         isKnocking = false;
+    }
+
+    private void DropGold()
+    {
+        Instantiate(goldPrefab, transform.position, Quaternion.identity);
+    }
+
+   private void Die()
+    {
+        DropGold();
+        Destroy(gameObject);
     }
 }
