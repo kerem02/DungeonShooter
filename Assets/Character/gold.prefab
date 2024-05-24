@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 7
   m_Sprite: {fileID: 2080710049, guid: ccf27a4fceb0a0549b71a109b08995e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -161,4 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31dbbd64b175ff4fa6a2d042b9e5407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 0}
+  goldPickUp: {fileID: 8300000, guid: 0adc9d10ffaf5894ba255fc513ddfbd2, type: 3}
   goldAmount: 1

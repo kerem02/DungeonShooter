@@ -129,6 +129,7 @@ MonoBehaviour:
   speed: 18
   lifeTime: 3
   hitEffect: {fileID: 8898036845073595810, guid: 1bf1f5973bf78fb40bbb4d99cdcbbd57, type: 3}
+  wallHitEffect: {fileID: 6461632446426739167, guid: 5b88461050efabc479152ef651c3153e, type: 3}
   knockbackForce: 5
 --- !u!60 &1071787549073535000
 PolygonCollider2D:

@@ -312,6 +312,7 @@ MonoBehaviour:
   healthBar: {fileID: 2137487079973069838}
   cenemyspriteRenderer: {fileID: 0}
   goldPrefab: {fileID: 5278048540882146363, guid: 63da713a25ce26540a64271c5b27366a, type: 3}
+  bulletHitSound: {fileID: 8300000, guid: 638c37eceaa13dd4487e4de1a4a39fd3, type: 3}
   <health>k__BackingField: 50
   <isKnocking>k__BackingField: 0
   <knockbackDuration>k__BackingField: 0.3

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0554172abb7bc154396e3536c61d8c8c, type: 3}
+  m_Name: DoublePistol
+  m_EditorClassIdentifier: 
+  weaponType: 1
+  weaponPrefab: {fileID: 2189740738977792853, guid: 2ecf52f2d9b8498428ded7bd99583e85, type: 3}
+  fireRate: 0.5
