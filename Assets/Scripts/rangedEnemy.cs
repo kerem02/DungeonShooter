@@ -19,7 +19,7 @@ public class rangedEnemy : MonoBehaviour, IDamageble
     [SerializeField] private float fireRate = 1.2f;
     [SerializeField] private int goldDropAmount;
     private float speed =4.5f;
-    private float triggerDistance = 12f;
+    private float triggerDistance = 14f;
     private float distanceToShoot = 8f;
     private float distanceToStop = 7f;
     private float timeToFire = 0;

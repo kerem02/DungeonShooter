@@ -7,8 +7,8 @@ public class enemy : MonoBehaviour, IDamageble
     public Transform target;
     public Rigidbody2D rb;
 
-    private float speed =3f;
-    private float triggerDistance =10f;
+    private float speed =4.5f;
+    private float triggerDistance =14f;
 
     private bool isTriggered = false;
 

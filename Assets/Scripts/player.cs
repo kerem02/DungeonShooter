@@ -59,6 +59,7 @@ public class player : MonoBehaviour, IDamageble
         animator = GetComponent<Animator>();
         charspriteRenderer = GetComponent<SpriteRenderer>();
         sound = AudioManager.instance;
+        health = maxHealth;
         healthBar.setMaxHealth(health);
         deadScreen.SetActive(false);
         UpdatePotionUI();
@@ -206,9 +207,9 @@ public class player : MonoBehaviour, IDamageble
     public void Heal(int amount)
     {
         health += amount;
-        if(health >= 100)
+        if(health >= maxHealth)
         {
-            health = 100;
+            health = maxHealth;
         }
         healthPotionCount--;
         UpdatePotionUI();
