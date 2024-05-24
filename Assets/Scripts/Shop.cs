@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -78,7 +77,7 @@ public class Shop : MonoBehaviour
 
     public void BuyDoublePistol()
     {
-        int cost = 1;
+        int cost = 20;
         if(player.gold >= cost)
         {
             player.gold -= cost;
@@ -92,7 +91,7 @@ public class Shop : MonoBehaviour
 
     public void BuyRifle()
     {
-        int cost = 1;
+        int cost = 40;
         if(player.gold >= cost)
         {
             player.gold -= cost;

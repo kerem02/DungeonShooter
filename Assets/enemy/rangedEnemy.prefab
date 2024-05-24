@@ -138,6 +138,9 @@ MonoBehaviour:
   healthBar: {fileID: 2864242987679722231}
   goldPrefab: {fileID: 5278048540882146363, guid: 63da713a25ce26540a64271c5b27366a, type: 3}
   bulletHitSound: {fileID: 8300000, guid: 638c37eceaa13dd4487e4de1a4a39fd3, type: 3}
+  gunSound: {fileID: 8300000, guid: 0eaec92dec870984d94e76e1717f9f03, type: 3}
+  fireRate: 1.2
+  goldDropAmount: 1
   <health>k__BackingField: 100
   <isKnocking>k__BackingField: 0
   <knockbackDuration>k__BackingField: 0.1

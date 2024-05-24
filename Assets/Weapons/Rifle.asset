@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 2
   weaponPrefab: {fileID: 8622869426305499770, guid: 04f56e834cbed624cbcd3f006f64f4d1, type: 3}
-  fireRate: 0.3
+  fireRate: 0.18

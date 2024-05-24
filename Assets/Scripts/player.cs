@@ -1,12 +1,10 @@
 using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class player : MonoBehaviour, IDamageble
 {
@@ -25,7 +23,8 @@ public class player : MonoBehaviour, IDamageble
 
     public int gold = 0;
     public int healthPotionCount = 0;
-    private int healAmount = 25;
+    private int healAmount = 50;
+    [SerializeField] private int maxHealth;
 
     private bool isDashing = false;
 
@@ -88,7 +87,7 @@ public class player : MonoBehaviour, IDamageble
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.E) && health < 100 && healthPotionCount > 0)
+        if (Input.GetKeyDown(KeyCode.E) && health < maxHealth && healthPotionCount > 0)
         {
             Heal(healAmount);
         }
@@ -97,6 +96,7 @@ public class player : MonoBehaviour, IDamageble
         {
             Die();
         }
+    
     }
 
     void FixedUpdate()
@@ -170,7 +170,7 @@ public class player : MonoBehaviour, IDamageble
         if (other.gameObject.CompareTag("MeleeEnemy"))
         {
             Vector2 difference = (transform.position - other.transform.position).normalized;
-            takeDamage(25, difference, meleeknockbackForce);
+            takeMeleeDamage(25, difference, meleeknockbackForce);
             
         }
     }
@@ -281,4 +281,5 @@ public class player : MonoBehaviour, IDamageble
     {
         return currentWeapon;
     }
+
 }

@@ -1,8 +1,5 @@
 using BarthaSzabolcs.Tutorial_SpriteFlash;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -17,12 +14,14 @@ public class rangedEnemy : MonoBehaviour, IDamageble
     public GameObject goldPrefab;
     private AudioManager sound;
     public AudioClip bulletHitSound;
+    public AudioClip gunSound;
 
+    [SerializeField] private float fireRate = 1.2f;
+    [SerializeField] private int goldDropAmount;
     private float speed =4.5f;
     private float triggerDistance = 12f;
     private float distanceToShoot = 8f;
     private float distanceToStop = 7f;
-    private float fireRate = 1.2f;
     private float timeToFire = 0;
     private float smoothingSpeed = 8f;
 
@@ -69,6 +68,7 @@ public class rangedEnemy : MonoBehaviour, IDamageble
     private void shoot(){
         if(timeToFire <=0f){
             Instantiate(bulletPrefab, firingPoint.position,firingPoint.rotation);
+            sound.EnemyGunSound(gunSound);
             timeToFire = fireRate;
         }else{
             timeToFire -= Time.deltaTime;
@@ -132,7 +132,12 @@ public class rangedEnemy : MonoBehaviour, IDamageble
 
     private void DropGold()
     {
+        for(int i =0; i < goldDropAmount; i++)
+        {
+
         Instantiate(goldPrefab, transform.position, Quaternion.identity);
+
+        }
     }
 
     private void Die()
