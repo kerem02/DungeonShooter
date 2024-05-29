@@ -27,7 +27,7 @@ public class shooting : MonoBehaviour
         if(Time.timeScale == 0) return;
 
         Weapon currentWeapon = player.GetCurrentWeapon();
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
+        if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + currentWeapon.fireRate;
 

@@ -15,6 +15,7 @@ public class bullet : MonoBehaviour
     public GameObject wallHitEffect;
     private AudioManager sound;
     public AudioClip bulletMapCollideSound;
+    public AudioClip bulletHitSound;
 
     [SerializeField] private float knockbackForce = 1f;
 
@@ -44,12 +45,20 @@ public class bullet : MonoBehaviour
             Destroy(gameObject);
 
         }
+
+        else if (collision.gameObject.CompareTag("Boss"))
+        {
+            Instantiate(wallHitEffect, transform.position, transform.rotation);
+            sound.BulletHitSound(bulletHitSound);
+            Destroy(gameObject);
+        }
         else if (!collision.gameObject.CompareTag("Bullet"))
         {
             Instantiate(wallHitEffect, transform.position, transform.rotation);
             sound.BulletMapHitSound(bulletMapCollideSound);
             Destroy(gameObject);
         }
+
 
     }
 

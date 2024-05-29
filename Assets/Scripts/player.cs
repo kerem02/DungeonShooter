@@ -236,6 +236,7 @@ public class player : MonoBehaviour, IDamageble
 
     public void TryAgain()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

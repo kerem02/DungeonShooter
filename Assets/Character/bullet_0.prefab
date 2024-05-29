@@ -180,4 +180,5 @@ MonoBehaviour:
   hitEffect: {fileID: 8898036845073595810, guid: 1bf1f5973bf78fb40bbb4d99cdcbbd57, type: 3}
   wallHitEffect: {fileID: 6461632446426739167, guid: 5b88461050efabc479152ef651c3153e, type: 3}
   bulletMapCollideSound: {fileID: 8300000, guid: 0b0c1c5bdce556c4c959d926725d74bf, type: 3}
+  bulletHitSound: {fileID: 8300000, guid: 638c37eceaa13dd4487e4de1a4a39fd3, type: 3}
   knockbackForce: 5
